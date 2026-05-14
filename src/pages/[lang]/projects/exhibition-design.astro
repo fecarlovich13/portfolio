@@ -18,9 +18,8 @@ const sorted = projects
 ---
 
 <BaseLayout title={t('section.exhibition-design')}>
-  <section class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-light mb-12" style="font-family: var(--font-serif)">{t('section.exhibition-design')}</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+  <section class="max-w-screen-xl mx-auto px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {sorted.map((project) => {
         const slug = project.id.replace(`${lang}/`, '');
         return (
