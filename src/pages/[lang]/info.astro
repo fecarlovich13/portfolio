@@ -1,39 +1,40 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
 }
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as 'en' | 'pt');
-
-const bio = {
-  en: [
-    `Fernanda Carlovich is an artist based in [your city]. Her work explores [your themes].`,
-    `She has exhibited at [galleries/institutions]. Her practice spans [mediums].`,
-  ],
-  pt: [
-    `Fernanda Carlovich é uma artista baseada em [sua cidade]. Seu trabalho explora [seus temas].`,
-    `Ela já expôs em [galerias/instituições]. Sua prática abrange [meios].`,
-  ],
-};
+const { lang } = Astro.props.params ?? Astro.params;
 ---
 
 <BaseLayout title="Info">
-  <section class="max-w-2xl mx-auto px-8 py-20 space-y-16">
+  <section class="max-w-2xl mx-auto px-8 py-20 space-y-12">
 
-    <div class="prose text-stone-700">
-      {bio[lang as 'en' | 'pt'].map((para) => <p>{para}</p>)}
+    <div class="prose text-stone-700 space-y-5">
+      <p>I am an architect from Sao Paulo who has dedicated her professional and academic experience to culture in the form of buildings, exhibitions, and research. From my first internship with Collective EXYZT, to my current role as Exhibition Designer at SFMOMA, I've been involved with the fascinating task of conceiving, researching, producing, fabricating, and designing exhibitions.</p>
+      <p>I graduated in Architecture and Urbanism from the University of Sao Paulo with a one-year passage at Central Saint Martins, London. Recently, I got a Master's degree in Critical, Curatorial, and Conceptual Practices in Architecture at GSAPP, Columbia University.</p>
+      <p>My interests permeate architecture research, curatorial practices, and exhibition design.</p>
+    </div>
+
+    <div class="space-y-4 text-sm text-stone-600">
+      <p>
+        An exhibition that I've designed, <em>Corpo a Corpo</em>, is on view at Google Arts & Culture. I feel lucky to still be able to walk through it after many years.
+        <a href="https://artsandculture.google.com/streetview/ims-paulista-7%C2%BA-andar/TwF0sZWo4IxxRw?sv_lng=-46.66188580782906&sv_lat=-23.55607980236191&sv_h=20.789113708042525&sv_p=-3.5848270906544144&sv_pid=DdaumiE-DYrg-ikgWZqqbg&sv_z=1" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-stone-900 transition-colors">↗</a>
+      </p>
+      <p>
+        I love watching this video with kids reacting to a very subtle string installation my group put together while in architecture school in London, in 2013.
+        <a href="https://vimeo.com/79151911" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-stone-900 transition-colors">↗</a>
+      </p>
+      <p>
+        <a href="#" class="underline underline-offset-2 hover:text-stone-900 transition-colors">CV</a>
+      </p>
     </div>
 
     <div>
-      <span class="text-stone-400 uppercase tracking-widest text-xs block mb-2">
-        {lang === 'pt' ? 'E-mail' : 'Email'}
-      </span>
-      <a href="mailto:hello@fernandacarlovich.com" class="text-sm text-stone-600 hover:text-stone-900 transition-colors">
-        hello@fernandacarlovich.com
+      <span class="text-stone-400 uppercase tracking-widest text-xs block mb-2">Email</span>
+      <a href="mailto:fecarlovich@gmail.com" class="text-sm text-stone-600 hover:text-stone-900 transition-colors">
+        fecarlovich@gmail.com
       </a>
     </div>
 
