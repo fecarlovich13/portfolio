@@ -12,8 +12,9 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as 'en' | 'pt');
 
 const allProjects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
-const featured = allProjects.filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order);
-const rest = allProjects.filter((p) => !p.data.featured).sort((a, b) => a.data.order - b.data.order);
+const sorted = allProjects.sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
+const featured = sorted.filter((p) => p.data.featured);
+const rest = sorted.filter((p) => !p.data.featured);
 ---
 
 <BaseLayout title={t('nav.home')}>
@@ -34,10 +35,11 @@ const rest = allProjects.filter((p) => !p.data.featured).sort((a, b) => a.data.o
               <ProjectCard
                 title={project.data.title}
                 summary={project.data.summary}
+                institution={project.data.institution}
+                city={project.data.city}
                 year={project.data.year}
                 cover={project.data.cover}
                 slug={slug}
-                tags={project.data.tags}
               />
             );
           })}
@@ -55,10 +57,11 @@ const rest = allProjects.filter((p) => !p.data.featured).sort((a, b) => a.data.o
               <ProjectCard
                 title={project.data.title}
                 summary={project.data.summary}
+                institution={project.data.institution}
+                city={project.data.city}
                 year={project.data.year}
                 cover={project.data.cover}
                 slug={slug}
-                tags={project.data.tags}
               />
             );
           })}

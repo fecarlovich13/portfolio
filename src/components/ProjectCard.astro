@@ -4,33 +4,41 @@ import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils
 
 interface Props {
   title: string;
-  summary: string;
+  summary?: string;
+  institution?: string;
+  city?: string;
   year: number;
-  cover: ImageMetadata;
+  cover?: ImageMetadata;
   slug: string;
   tags?: string[];
 }
 
-const { title, summary, year, cover, slug, tags = [] } = Astro.props;
+const { title, summary, institution, city, year, cover, slug } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const meta = [institution, city].filter(Boolean).join(', ');
 ---
 
 <article class="group">
   <a href={getLocalizedPath(lang, `/projects/${slug}`)} class="block">
-    <div class="overflow-hidden mb-4 bg-stone-100 aspect-[4/3]">
-      <Image
-        src={cover}
-        alt={title}
-        width={800}
-        height={600}
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-      />
+    <div class="overflow-hidden mb-4 bg-stone-100 aspect-[4/3] flex items-center justify-center">
+      {cover ? (
+        <Image
+          src={cover}
+          alt={title}
+          width={800}
+          height={600}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <span class="text-stone-300 text-xs uppercase tracking-widest">sem imagem</span>
+      )}
     </div>
     <div>
-      <h2 class="font-light text-xl mb-1" style="font-family: var(--font-serif)">{title}</h2>
-      <p class="text-stone-400 text-xs mb-2">{year}</p>
-      <p class="text-stone-500 text-sm leading-relaxed line-clamp-2">{summary}</p>
+      <h2 class="font-light text-xl mb-1 leading-snug" style="font-family: var(--font-serif)">{title}</h2>
+      <p class="text-stone-400 text-xs mb-1">{[meta, year].filter(Boolean).join(' · ')}</p>
+      {summary && (
+        <p class="text-stone-500 text-sm leading-relaxed line-clamp-2">{summary}</p>
+      )}
     </div>
   </a>
 </article>

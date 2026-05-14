@@ -12,7 +12,7 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as 'en' | 'pt');
 
 const projects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
-const sorted = projects.sort((a, b) => a.data.order - b.data.order);
+const sorted = projects.sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
 ---
 
 <BaseLayout title={t('nav.projects')}>
@@ -25,10 +25,11 @@ const sorted = projects.sort((a, b) => a.data.order - b.data.order);
           <ProjectCard
             title={project.data.title}
             summary={project.data.summary}
+            institution={project.data.institution}
+            city={project.data.city}
             year={project.data.year}
             cover={project.data.cover}
             slug={slug}
-            tags={project.data.tags}
           />
         );
       })}

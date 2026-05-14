@@ -6,9 +6,12 @@ const projects = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      summary: z.string(),
+      summary: z.string().default(''),
+      institution: z.string().default(''),
+      city: z.string().default(''),
+      role: z.string().default(''),
       year: z.number(),
-      cover: image(),
+      cover: image().optional(),
       gallery: z.array(image()).optional(),
       tags: z.array(z.string()).default([]),
       featured: z.boolean().default(false),

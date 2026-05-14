@@ -1,0 +1,11 @@
+---
+title: "Barbara Stauffacher Solomon: Strips of Stripes"
+institution: "San Francisco Museum of Modern Art"
+city: "San Francisco"
+role: "Expografia"
+year: 2023
+tags: []
+featured: false
+order: 24
+publishedAt: 2023-01-01
+---
