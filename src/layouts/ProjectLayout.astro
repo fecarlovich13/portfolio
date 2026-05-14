@@ -5,17 +5,20 @@ import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils
 import { Image } from 'astro:assets';
 
 const { entry } = Astro.props;
-const { title, summary, institution, city, role, year, cover, gallery, tags } = entry.data;
+const { title, summary, institution, city, role, section, year, cover, gallery, tags } = entry.data;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const meta = [institution, city, String(year)].filter(Boolean).join(' — ');
+const backPath = section === 'research-writing'
+  ? '/projects/research-writing'
+  : '/projects/exhibition-design';
 ---
 
 <BaseLayout title={title} description={summary}>
   <article class="max-w-4xl mx-auto px-8 py-16">
     <a
-      href={getLocalizedPath(lang, '/projects')}
+      href={getLocalizedPath(lang, backPath)}
       class="text-sm text-stone-400 hover:text-stone-700 transition-colors mb-10 inline-block"
     >
       {t('project.backToProjects')}
