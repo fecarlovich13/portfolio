@@ -9,7 +9,7 @@ const { title, summary, institution, city, role, section, year, cover, gallery, 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const meta = [institution, city, String(year)].filter(Boolean).join(' — ');
+const meta = [institution, String(year)].filter(Boolean).join(' — ');
 const backPath = section === 'research-writing'
   ? '/projects/research-writing'
   : '/projects/exhibition-design';

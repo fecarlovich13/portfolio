@@ -15,7 +15,7 @@ interface Props {
 
 const { title, summary, institution, city, year, cover, slug } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const meta = [institution, city].filter(Boolean).join(', ');
+const meta = institution || '';
 ---
 
 <article class="group">
