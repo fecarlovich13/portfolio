@@ -5,8 +5,7 @@ export const ui = {
   en: {
     'nav.home': 'Home',
     'nav.projects': 'Projects',
-    'nav.about': 'About',
-    'nav.contact': 'Contact',
+    'nav.info': 'Info',
     'project.viewMore': 'View project',
     'project.year': 'Year',
     'project.tags': 'Tags',
@@ -21,8 +20,7 @@ export const ui = {
   pt: {
     'nav.home': 'Início',
     'nav.projects': 'Projetos',
-    'nav.about': 'Sobre',
-    'nav.contact': 'Contato',
+    'nav.info': 'Info',
     'project.viewMore': 'Ver projeto',
     'project.year': 'Ano',
     'project.tags': 'Tags',

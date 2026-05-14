@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'en' | 'pt');
+
+const bio = {
+  en: [
+    `Fernanda Carlovich is an artist based in [your city]. Her work explores [your themes].`,
+    `She has exhibited at [galleries/institutions]. Her practice spans [mediums].`,
+  ],
+  pt: [
+    `Fernanda Carlovich é uma artista baseada em [sua cidade]. Seu trabalho explora [seus temas].`,
+    `Ela já expôs em [galerias/instituições]. Sua prática abrange [meios].`,
+  ],
+};
+---
+
+<BaseLayout title="Info">
+  <section class="max-w-2xl mx-auto px-8 py-20 space-y-16">
+
+    <div class="prose text-stone-700">
+      {bio[lang as 'en' | 'pt'].map((para) => <p>{para}</p>)}
+    </div>
+
+    <div>
+      <span class="text-stone-400 uppercase tracking-widest text-xs block mb-2">
+        {lang === 'pt' ? 'E-mail' : 'Email'}
+      </span>
+      <a href="mailto:hello@fernandacarlovich.com" class="text-sm text-stone-600 hover:text-stone-900 transition-colors">
+        hello@fernandacarlovich.com
+      </a>
+    </div>
+
+  </section>
+</BaseLayout>
