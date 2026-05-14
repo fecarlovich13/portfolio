@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'en' | 'pt');
+
+const allProjects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+const featured = allProjects.filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order);
+const rest = allProjects.filter((p) => !p.data.featured).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={t('nav.home')}>
+  <section class="max-w-5xl mx-auto px-6 py-20">
+    <div class="mb-16">
+      <h1 class="text-6xl font-light leading-tight mb-4" style="font-family: var(--font-serif)">
+        Fernanda Carlovich
+      </h1>
+    </div>
+
+    {featured.length > 0 && (
+      <div class="mb-20">
+        <h2 class="text-xs uppercase tracking-widest text-stone-400 mb-8">{t('home.featured')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {featured.map((project) => {
+            const slug = project.id.replace(`${lang}/`, '').replace(/\.md$/, '');
+            return (
+              <ProjectCard
+                title={project.data.title}
+                summary={project.data.summary}
+                year={project.data.year}
+                cover={project.data.cover}
+                slug={slug}
+                tags={project.data.tags}
+              />
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {rest.length > 0 && (
+      <div>
+        <h2 class="text-xs uppercase tracking-widest text-stone-400 mb-8">{t('home.allProjects')}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {rest.map((project) => {
+            const slug = project.id.replace(`${lang}/`, '').replace(/\.md$/, '');
+            return (
+              <ProjectCard
+                title={project.data.title}
+                summary={project.data.summary}
+                year={project.data.year}
+                cover={project.data.cover}
+                slug={slug}
+                tags={project.data.tags}
+              />
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </section>
+</BaseLayout>

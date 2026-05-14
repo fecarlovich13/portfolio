@@ -1,0 +1,52 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ImageGallery from '../components/ImageGallery.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import { Image } from 'astro:assets';
+
+const { entry } = Astro.props;
+const { title, summary, year, cover, gallery, tags } = entry.data;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <a
+      href={getLocalizedPath(lang, '/projects')}
+      class="text-sm text-stone-400 hover:text-stone-700 transition-colors mb-10 inline-block"
+    >
+      {t('project.backToProjects')}
+    </a>
+
+    <header class="mb-12">
+      <h1 class="text-5xl font-light leading-tight mb-4" style="font-family: var(--font-serif)">{title}</h1>
+      <p class="text-stone-500 text-sm mb-3">{year}</p>
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag: string) => (
+            <span class="text-xs text-stone-400 border border-stone-200 px-2 py-0.5 rounded-full">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="mb-12">
+      <Image
+        src={cover}
+        alt={title}
+        width={1200}
+        height={800}
+        class="w-full object-cover"
+      />
+    </div>
+
+    <div class="prose max-w-none mb-16 text-stone-700">
+      <slot />
+    </div>
+
+    {gallery && gallery.length > 0 && (
+      <ImageGallery images={gallery} alt={title} />
+    )}
+  </article>
+</BaseLayout>

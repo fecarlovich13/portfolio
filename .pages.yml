@@ -1,0 +1,43 @@
+media:
+  - name: project-images
+    input: src/assets/projects
+    output: /src/assets/projects
+
+content:
+  - name: projects-en
+    label: Projects (EN)
+    type: collection
+    path: src/content/projects/en
+    filename: '{slug}.md'
+    view:
+      fields: [title, year, featured]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Summary, type: text, required: true }
+      - { name: year, label: Year, type: number, required: true }
+      - { name: cover, label: Cover image, type: image, options: { input: src/assets/projects, output: /src/assets/projects } }
+      - { name: gallery, label: Gallery, type: image, list: true, options: { input: src/assets/projects, output: /src/assets/projects } }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: featured, label: Featured on home, type: boolean, default: false }
+      - { name: order, label: Display order, type: number, default: 0 }
+      - { name: publishedAt, label: Published date, type: date, required: true }
+      - { name: body, label: Description, type: rich-text }
+
+  - name: projects-pt
+    label: Projetos (PT)
+    type: collection
+    path: src/content/projects/pt
+    filename: '{slug}.md'
+    view:
+      fields: [title, year, featured]
+    fields:
+      - { name: title, label: Título, type: string, required: true }
+      - { name: summary, label: Resumo, type: text, required: true }
+      - { name: year, label: Ano, type: number, required: true }
+      - { name: cover, label: Imagem de capa, type: image, options: { input: src/assets/projects, output: /src/assets/projects } }
+      - { name: gallery, label: Galeria, type: image, list: true, options: { input: src/assets/projects, output: /src/assets/projects } }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: featured, label: Destacado, type: boolean, default: false }
+      - { name: order, label: Ordem, type: number, default: 0 }
+      - { name: publishedAt, label: Data de publicação, type: date, required: true }
+      - { name: body, label: Descrição, type: rich-text }

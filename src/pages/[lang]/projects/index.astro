@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'en' | 'pt');
+
+const projects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+const sorted = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={t('nav.projects')}>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-light mb-12" style="font-family: var(--font-serif)">{t('nav.projects')}</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {sorted.map((project) => {
+        const slug = project.id.replace(`${lang}/`, '').replace(/\.md$/, '');
+        return (
+          <ProjectCard
+            title={project.data.title}
+            summary={project.data.summary}
+            year={project.data.year}
+            cover={project.data.cover}
+            slug={slug}
+            tags={project.data.tags}
+          />
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+import { languages, ui } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+// Build the alternate-language URL by swapping the lang segment
+const currentPath = Astro.url.pathname;
+const otherLang = lang === 'en' ? 'pt' : 'en';
+const otherPath = currentPath.replace(`/portfolio/${lang}`, `/portfolio/${otherLang}`);
+---
+
+<a
+  href={otherPath}
+  class="text-xs text-stone-400 hover:text-stone-700 border border-stone-200 hover:border-stone-400 px-2 py-1 rounded transition-colors"
+  aria-label={`Switch to ${languages[otherLang]}`}
+>
+  {otherLang.toUpperCase()}
+</a>

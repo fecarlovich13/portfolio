@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  summary: string;
+  year: number;
+  cover: ImageMetadata;
+  slug: string;
+  tags?: string[];
+}
+
+const { title, summary, year, cover, slug, tags = [] } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<article class="group">
+  <a href={getLocalizedPath(lang, `/projects/${slug}`)} class="block">
+    <div class="overflow-hidden mb-4 bg-stone-100 aspect-[4/3]">
+      <Image
+        src={cover}
+        alt={title}
+        width={800}
+        height={600}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+    <div>
+      <h2 class="font-light text-xl mb-1" style="font-family: var(--font-serif)">{title}</h2>
+      <p class="text-stone-400 text-xs mb-2">{year}</p>
+      <p class="text-stone-500 text-sm leading-relaxed line-clamp-2">{summary}</p>
+    </div>
+  </a>
+</article>

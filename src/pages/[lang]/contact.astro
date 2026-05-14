@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'en' | 'pt');
+---
+
+<BaseLayout title={t('contact.title')}>
+  <section class="max-w-2xl mx-auto px-6 py-20">
+    <h1 class="text-4xl font-light mb-12" style="font-family: var(--font-serif)">{t('contact.title')}</h1>
+    <div class="space-y-4 text-stone-600">
+      <p class="text-sm font-light">
+        <span class="text-stone-400 uppercase tracking-widest text-xs block mb-1">{t('contact.email')}</span>
+        <a href="mailto:hello@fernandacarlovich.com" class="hover:text-stone-900 transition-colors">
+          hello@fernandacarlovich.com
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
