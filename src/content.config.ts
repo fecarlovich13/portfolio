@@ -10,6 +10,7 @@ const projects = defineCollection({
       institution: z.string().default(''),
       city: z.string().default(''),
       role: z.string().default(''),
+      section: z.enum(['exhibition-design', 'research-writing']).default('exhibition-design'),
       year: z.number(),
       cover: image().optional(),
       gallery: z.array(image()).optional(),

@@ -2,6 +2,7 @@
 title: "Paisagem opaca"
 institution: "MAM São Paulo"
 city: "São Paulo"
+section: "exhibition-design"
 role: "Expografia"
 year: 2015
 tags: []

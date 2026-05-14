@@ -2,6 +2,7 @@
 title: "Câmera Aberta, Michael Wesely"
 institution: "IMS Paulista"
 city: "São Paulo"
+section: "exhibition-design"
 role: "Expografia"
 year: 2017
 tags: []

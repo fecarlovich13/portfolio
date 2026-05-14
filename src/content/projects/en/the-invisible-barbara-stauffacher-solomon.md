@@ -2,6 +2,7 @@
 title: "The Invisible, Barbara Stauffacher Solomon"
 institution: "Colpa Press"
 city: "San Francisco"
+section: "exhibition-design"
 role: "Assistência Artística"
 year: 2024
 tags: []

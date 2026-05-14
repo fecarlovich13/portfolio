@@ -2,6 +2,7 @@
 title: "CCCP Gift Shop"
 institution: "Columbia University"
 city: "Nova York"
+section: "exhibition-design"
 role: "Expografia"
 year: 2019
 tags: []

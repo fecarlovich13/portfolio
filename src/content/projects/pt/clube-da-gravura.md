@@ -2,6 +2,7 @@
 title: "Clube da Gravura"
 institution: "MAM São Paulo"
 city: "São Paulo"
+section: "exhibition-design"
 role: "Expografia"
 year: 2016
 tags: []

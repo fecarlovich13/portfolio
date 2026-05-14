@@ -2,6 +2,7 @@
 title: "Breach, Workshop for Environmental Technik (WET)"
 institution: "80WSE Gallery at NYU"
 city: "New York"
+section: "exhibition-design"
 role: "Expografia"
 year: 2023
 tags: []

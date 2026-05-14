@@ -2,6 +2,7 @@
 title: "Theresa Hak Kyung Cha: Multiple Offerings"
 institution: "Berkeley Art Museum and Pacific Film Archive"
 city: "Berkeley"
+section: "exhibition-design"
 role: "Expografia"
 year: 2026
 tags: []

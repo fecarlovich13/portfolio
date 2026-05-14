@@ -2,6 +2,7 @@
 title: "Ways of Seeing: Fourteen Artists"
 institution: "San Francisco Museum of Modern Art"
 city: "San Francisco"
+section: "exhibition-design"
 role: "Expografia"
 year: 2026
 tags: []

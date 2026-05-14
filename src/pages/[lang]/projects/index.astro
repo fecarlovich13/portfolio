@@ -11,28 +11,57 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = useTranslations(lang as 'en' | 'pt');
 
-const projects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
-const sorted = projects.sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
+const allProjects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+const sorted = allProjects.sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
+
+const exhibitionDesign = sorted.filter((p) => p.data.section === 'exhibition-design');
+const researchWriting = sorted.filter((p) => p.data.section === 'research-writing');
 ---
 
 <BaseLayout title={t('nav.projects')}>
   <section class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-light mb-12" style="font-family: var(--font-serif)">{t('nav.projects')}</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {sorted.map((project) => {
-        const slug = project.id.replace(`${lang}/`, '').replace(/\.md$/, '');
-        return (
-          <ProjectCard
-            title={project.data.title}
-            summary={project.data.summary}
-            institution={project.data.institution}
-            city={project.data.city}
-            year={project.data.year}
-            cover={project.data.cover}
-            slug={slug}
-          />
-        );
-      })}
-    </div>
+    {exhibitionDesign.length > 0 && (
+      <div class="mb-20">
+        <h2 class="text-xs uppercase tracking-widest text-stone-400 mb-8">{t('section.exhibition-design')}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {exhibitionDesign.map((project) => {
+            const slug = project.id.replace(`${lang}/`, '');
+            return (
+              <ProjectCard
+                title={project.data.title}
+                summary={project.data.summary}
+                institution={project.data.institution}
+                city={project.data.city}
+                year={project.data.year}
+                cover={project.data.cover}
+                slug={slug}
+              />
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {researchWriting.length > 0 && (
+      <div>
+        <h2 class="text-xs uppercase tracking-widest text-stone-400 mb-8">{t('section.research-writing')}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {researchWriting.map((project) => {
+            const slug = project.id.replace(`${lang}/`, '');
+            return (
+              <ProjectCard
+                title={project.data.title}
+                summary={project.data.summary}
+                institution={project.data.institution}
+                city={project.data.city}
+                year={project.data.year}
+                cover={project.data.cover}
+                slug={slug}
+              />
+            );
+          })}
+        </div>
+      </div>
+    )}
   </section>
 </BaseLayout>

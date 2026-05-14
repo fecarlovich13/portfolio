@@ -2,6 +2,7 @@
 title: "Amy Sherald: American Sublime"
 institution: "San Francisco Museum of Modern Art"
 city: "San Francisco"
+section: "exhibition-design"
 role: "Expografia"
 year: 2024
 tags: []

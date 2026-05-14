@@ -14,8 +14,8 @@ export const ui = {
     'about.title': 'About',
     'contact.title': 'Contact',
     'contact.email': 'Email',
-    'home.featured': 'Featured work',
-    'home.allProjects': 'All projects',
+    'section.exhibition-design': 'Exhibition Design',
+    'section.research-writing': 'Research and Writing',
     'footer.copyright': '© {year} Fernanda Carlovich',
   },
   pt: {
@@ -30,8 +30,8 @@ export const ui = {
     'about.title': 'Sobre',
     'contact.title': 'Contato',
     'contact.email': 'E-mail',
-    'home.featured': 'Trabalhos em destaque',
-    'home.allProjects': 'Todos os projetos',
+    'section.exhibition-design': 'Expografia',
+    'section.research-writing': 'Pesquisa e Escrita',
     'footer.copyright': '© {year} Fernanda Carlovich',
   },
 } as const;

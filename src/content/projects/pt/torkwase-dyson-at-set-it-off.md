@@ -2,6 +2,7 @@
 title: "Torkwase Dyson at Set it Off"
 institution: "Parrish Art Museum"
 city: "Water Mill"
+section: "exhibition-design"
 role: "Expografia"
 year: 2022
 tags: []

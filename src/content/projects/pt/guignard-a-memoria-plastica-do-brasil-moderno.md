@@ -2,6 +2,7 @@
 title: "Guignard: A memória plástica do Brasil moderno"
 institution: "MAM São Paulo"
 city: "São Paulo"
+section: "exhibition-design"
 role: "Expografia"
 year: 2015
 tags: []

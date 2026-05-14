@@ -2,6 +2,7 @@
 title: "Bird and Lava, Torkwase Dyson"
 institution: "Shanghai Art Biennial"
 city: "Shanghai"
+section: "exhibition-design"
 role: "Expografia"
 year: 2021
 tags: []

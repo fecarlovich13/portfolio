@@ -2,6 +2,7 @@
 title: "I Can Drink the Distance, Torkwase Dyson"
 institution: "Pace Gallery New York"
 city: "Nova York"
+section: "exhibition-design"
 role: "Assistência Artística"
 year: 2019
 tags: []
