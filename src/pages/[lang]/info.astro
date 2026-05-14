@@ -5,27 +5,75 @@ export function getStaticPaths() {
   return [{ params: { lang: 'en' } }, { params: { lang: 'pt' } }];
 }
 
-const { lang } = Astro.props.params ?? Astro.params;
+const { lang } = Astro.params;
+
+const bio = {
+  en: [
+    "I am an architect from Sao Paulo who has dedicated her professional and academic experience to culture in the form of buildings, exhibitions, and research. From my first internship with Collective EXYZT, to my current role as Exhibition Designer at SFMOMA, I've been involved with the fascinating task of conceiving, researching, producing, fabricating, and designing exhibitions.",
+    "I graduated in Architecture and Urbanism from the University of Sao Paulo with a one-year passage at Central Saint Martins, London. Recently, I got a Master's degree in Critical, Curatorial, and Conceptual Practices in Architecture at GSAPP, Columbia University.",
+    "My interests permeate architecture research, curatorial practices, and exhibition design.",
+  ],
+  pt: [
+    "Sou arquiteta de São Paulo e dediquei minha experiência profissional e acadêmica à cultura na forma de edifícios, exposições e pesquisa. Desde meu primeiro estágio com o Coletivo EXYZT até meu papel atual como Designer de Expografia no SFMOMA, estou envolvida com a fascinante tarefa de conceber, pesquisar, produzir, fabricar e projetar exposições.",
+    "Me formei em Arquitetura e Urbanismo pela Universidade de São Paulo, com um ano de passagem pela Central Saint Martins, em Londres. Recentemente, concluí o mestrado em Práticas Críticas, Curatoriais e Conceituais em Arquitetura na GSAPP, Universidade Columbia.",
+    "Meus interesses permeiam a pesquisa em arquitetura, as práticas curatoriais e o design de exposições.",
+  ],
+};
+
+const links = {
+  en: [
+    {
+      text: "An exhibition that I've designed, ",
+      em: "Corpo a Corpo",
+      rest: ", is on view at Google Arts & Culture. I feel lucky to still be able to walk through it after many years.",
+      url: "https://artsandculture.google.com/streetview/ims-paulista-7%C2%BA-andar/TwF0sZWo4IxxRw?sv_lng=-46.66188580782906&sv_lat=-23.55607980236191&sv_h=20.789113708042525&sv_p=-3.5848270906544144&sv_pid=DdaumiE-DYrg-ikgWZqqbg&sv_z=1",
+    },
+    {
+      text: "I love watching this video with kids reacting to a very subtle string installation my group put together while in architecture school in London, in 2013.",
+      em: null,
+      rest: null,
+      url: "https://vimeo.com/79151911",
+    },
+  ],
+  pt: [
+    {
+      text: "Uma exposição que projetei, ",
+      em: "Corpo a Corpo",
+      rest: ", está disponível no Google Arts & Culture. Me sinto sortuda de ainda poder caminhar por ela depois de tantos anos.",
+      url: "https://artsandculture.google.com/streetview/ims-paulista-7%C2%BA-andar/TwF0sZWo4IxxRw?sv_lng=-46.66188580782906&sv_lat=-23.55607980236191&sv_h=20.789113708042525&sv_p=-3.5848270906544144&sv_pid=DdaumiE-DYrg-ikgWZqqbg&sv_z=1",
+    },
+    {
+      text: "Adoro assistir a esse vídeo com crianças reagindo a uma instalação de fios muito sutil que meu grupo fez enquanto estudávamos arquitetura em Londres, em 2013.",
+      em: null,
+      rest: null,
+      url: "https://vimeo.com/79151911",
+    },
+  ],
+};
+
+const currentBio = bio[lang as 'en' | 'pt'];
+const currentLinks = links[lang as 'en' | 'pt'];
 ---
 
 <BaseLayout title="Info">
   <section class="max-w-2xl mx-auto px-8 py-20 space-y-12">
 
     <div class="prose text-stone-700 space-y-5">
-      <p>I am an architect from Sao Paulo who has dedicated her professional and academic experience to culture in the form of buildings, exhibitions, and research. From my first internship with Collective EXYZT, to my current role as Exhibition Designer at SFMOMA, I've been involved with the fascinating task of conceiving, researching, producing, fabricating, and designing exhibitions.</p>
-      <p>I graduated in Architecture and Urbanism from the University of Sao Paulo with a one-year passage at Central Saint Martins, London. Recently, I got a Master's degree in Critical, Curatorial, and Conceptual Practices in Architecture at GSAPP, Columbia University.</p>
-      <p>My interests permeate architecture research, curatorial practices, and exhibition design.</p>
+      {currentBio.map((para) => <p>{para}</p>)}
     </div>
 
     <div class="space-y-4 text-sm text-stone-600">
-      <p>
-        An exhibition that I've designed, <em>Corpo a Corpo</em>, is on view at Google Arts & Culture. I feel lucky to still be able to walk through it after many years.
-        <a href="https://artsandculture.google.com/streetview/ims-paulista-7%C2%BA-andar/TwF0sZWo4IxxRw?sv_lng=-46.66188580782906&sv_lat=-23.55607980236191&sv_h=20.789113708042525&sv_p=-3.5848270906544144&sv_pid=DdaumiE-DYrg-ikgWZqqbg&sv_z=1" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-stone-900 transition-colors">↗</a>
-      </p>
-      <p>
-        I love watching this video with kids reacting to a very subtle string installation my group put together while in architecture school in London, in 2013.
-        <a href="https://vimeo.com/79151911" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-stone-900 transition-colors">↗</a>
-      </p>
+      {currentLinks.map((link) => (
+        <p>
+          {link.em ? (
+            <>{link.text}<em>{link.em}</em>{link.rest}</>
+          ) : (
+            link.text
+          )}
+          {' '}
+          <a href={link.url} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-stone-900 transition-colors">↗</a>
+        </p>
+      ))}
       <p>
         <a href="#" class="underline underline-offset-2 hover:text-stone-900 transition-colors">CV</a>
       </p>
