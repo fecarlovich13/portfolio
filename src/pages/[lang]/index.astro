@@ -16,13 +16,8 @@ const sorted = allProjects.sort((a, b) => b.data.year - a.data.year || a.data.or
 ---
 
 <BaseLayout title={t('nav.home')}>
-  <section class="max-w-screen-xl mx-auto px-8 py-20">
-    <div class="mb-16">
-      <h1 class="text-6xl font-light leading-tight" style="font-family: var(--font-serif)">
-        Fernanda Carlovich
-      </h1>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <section class="max-w-screen-xl mx-auto px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       {sorted.map((project) => {
         const slug = project.id.replace(`${lang}/`, '');
         return (
